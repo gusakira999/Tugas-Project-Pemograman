@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Game Review{% endblock %}
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="mb-3">
+        <i class="bi bi-controller" style="font-size:2.5rem; color:#6366f1;"></i> Hello, Welcome!
+    </h1>
+    <p class="lead mb-4">
+        Perkenalkan nama saya <b>Nur Achmad Hidayat</b>. Kebetulan saya punya tugas projek membuat web menggunakan framework Django.<br>
+        Saya pun bingung untuk membuat web tema apa, jadinya saya membuat web tentang hobi saya yaitu bermain game.<br>
+        Web ini adalah <b>Gamepedia Pribadi</b> yang berisi daftar game yang pernah saya mainkan beserta deskripsi singkatnya!
+    </p>
+    <div class="d-flex justify-content-center gap-3 mb-3">
+        <span class="fs-1" title="Steam"><i class="bi bi-steam" style="color:#171a21;"></i></span>
+        <span class="fs-1" title="Xbox"><i class="bi bi-xbox" style="color:#107c10;"></i></span>
+        <span class="fs-1" title="PlayStation"><i class="bi bi-playstation" style="color:#003087;"></i></span>
+    </div>
+    <a href="{% url 'game' %}" class="btn btn-primary btn-lg mt-3 shadow">
+        <i class="bi bi-joystick"></i> Lihat Daftar Game
+    </a>
+</div>
+{% endblock %}

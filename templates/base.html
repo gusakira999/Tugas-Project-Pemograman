@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Me{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+            min-height: 100vh;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #6366f1 !important;
+            font-weight: 500;
+        }
+        .card {
+            border-radius: 1rem;
+            transition: box-shadow 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 6px 24px 0 rgba(99,102,241,0.15);
+        }
+        footer {
+            background: #f1f5f9;
+            color: #64748b;
+            text-align: center;
+            padding: 1rem 0 0.5rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'home' %}"><i class="bi bi-person-circle"></i> Me</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link{% if request.resolver_match.url_name == 'game' %} active{% endif %}" href="{% url 'game' %}">
+                <i class="bi bi-controller"></i> Game
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link{% if request.resolver_match.url_name == 'kontak' %} active{% endif %}" href="{% url 'kontak' %}">
+                <i class="bi bi-person-lines-fill"></i> Connections
+            </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container pb-5">
+    {% block content %}{% endblock %}
+</div>
+<footer>
+    <div>© {% now "Y" %} Project Web | By Yatt</div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

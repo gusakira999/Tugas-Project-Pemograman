@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Daftar Game{% endblock %}
+{% block content %}
+<h2 class="mb-4 text-center">Berikut Game-Game yang pernah saya mainkan</h2>
+
+<form method="get" class="mb-4 text-center">
+    <label for="genre" class="me-2">Filter Genre:</label>
+    <select name="genre" id="genre" onchange="this.form.submit()" class="form-select d-inline-block w-auto">
+        <option value="all">Semua Genre</option>
+        {% for g in genres %}
+            <option value="{{ g }}" {% if selected_genre == g %}selected{% endif %}>{{ g }}</option>
+        {% endfor %}
+    </select>
+</form>
+
+<div class="row justify-content-center">
+    {% for game in games %}
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card shadow-sm h-100 border-0">
+            {% if game.gambar %}
+            <img src="{{ game.gambar.url }}" class="card-img-top img-fluid" style="object-fit:cover; height:220px; transition:0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            {% else %}
+            <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height:220px;">No Image</div>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ game.nama }}</h5>
+                <span class="badge bg-primary mb-2">{{ game.genre }}</span>
+                <p class="card-text" style="min-height:70px;">{{ game.deskripsi }}</p>
+                <span class="badge bg-warning text-dark"><i class="bi bi-star-fill"></i> {{ game.rating }}</span>
+                <div class="mt-3">
+                    <a href="{% url 'edit_game' game.pk %}" class="btn btn-sm btn-outline-primary me-2">Edit</a>
+                    <a href="{% url 'delete_game' game.pk %}" class="btn btn-sm btn-outline-danger">Hapus</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
